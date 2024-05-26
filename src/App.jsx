@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Appointment from "./pages/Appointment";
 import DashboardLayout from "./dashboard";
+import Diagnosis from "./pages/Diagnosis";
 import Diseases from "./pages/Diseases";
 import DoctorAppointment from "./pages/DoctorAppointment";
 import PatientLogin from "./pages/PatientLogin";
@@ -31,6 +32,10 @@ function App() {
             element={<DashboardLayout navConfig={drNavConfig} />}
           >
             <Route path="/dashboard/doctor" element={<DoctorAppointment />} />
+            <Route
+              path="/dashboard/doctor/diagnostics"
+              element={<Diagnosis />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

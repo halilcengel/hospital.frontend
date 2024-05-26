@@ -24,6 +24,7 @@ function Login() {
     if (data) {
       if (data.data.length > 0) {
         setLoginError(false);
+        //TODO DETERMINE TYPE
         localStorage.setItem(`${type}Id`, data.data[0].id);
         navigate(`/dashboard/${type}`);
       } else {

@@ -14,6 +14,11 @@ const drNavConfig = [
     path: "/dashboard/doctor",
     icon: icon("ic_analytics"),
   },
+  {
+    title: "Hastalıklar",
+    path: "/dashboard/doctor/diagnostics",
+    icon: icon("ic_disabled"),
+  },
 ];
 
 export default drNavConfig;

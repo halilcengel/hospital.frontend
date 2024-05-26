@@ -12,7 +12,7 @@ function DoctorsAppointmentWidget() {
   const { patients, isLoading: patientLoding } = getPatients();
 
   if (isLoading && patientLoding) return <div>Loading...</div>;
-  console.log(appointments);
+
   if (appointments && patients) {
     appointments.forEach((appointment) => {
       const [symptomIds, symptomNames] = appointment.reason?.split("-");
