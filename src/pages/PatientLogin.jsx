@@ -1,6 +1,6 @@
 import { alpha, useTheme } from "@mui/material/styles";
 
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import Card from "@mui/material/Card";
 import Link from "@mui/material/Link";
 import Login from "../widgets/Login";
@@ -33,7 +33,7 @@ export default function LoginView() {
 
           <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
             Hesabınız Yok mu ?
-            <Link variant="subtitle2" sx={{ ml: 0.5 }}>
+            <Link variant="subtitle2" sx={{ ml: 0.5 }} href="signup" >
               Kayıt Ol
             </Link>
           </Typography>

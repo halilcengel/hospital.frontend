@@ -10,7 +10,6 @@ function SelectType({ type, setType }) {
   return (
     <>
       <Dialog open={!type} maxWidth={"lg"} fullWidth>
-        <DialogTitle>Kayıt Ol</DialogTitle>
         <Stack
           direction="row"
           spacing={2}

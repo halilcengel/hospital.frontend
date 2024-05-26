@@ -1,11 +1,11 @@
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import Header from "./header";
 import Main from "./main";
 import Nav from "./nav";
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children, navConfig }) {
   const [openNav, setOpenNav] = useState(false);
 
   return (
@@ -19,7 +19,11 @@ export default function DashboardLayout({ children }) {
           flexDirection: { xs: "column", lg: "row" },
         }}
       >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
+        <Nav
+          openNav={openNav}
+          onCloseNav={() => setOpenNav(false)}
+          navConfig={navConfig}
+        />
 
         <Main>
           <Outlet />

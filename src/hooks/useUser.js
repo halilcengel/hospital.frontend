@@ -3,7 +3,7 @@ import http from "../http";
 function useUser() {
   const createUser = async (email, password) => {
     const response = await http.post("user", {
-      emailAddres: email,
+      emailAddress: email,
       password: password,
     });
     return response;

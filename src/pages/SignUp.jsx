@@ -1,6 +1,6 @@
 import { alpha, useTheme } from "@mui/material/styles";
 
-import Box from "@mui/material/Box";
+import {Box} from "@mui/material";
 import Card from "@mui/material/Card";
 import { Divider } from "@mui/material";
 import Link from "@mui/material/Link";

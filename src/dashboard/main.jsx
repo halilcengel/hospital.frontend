@@ -1,7 +1,8 @@
 import { HEADER, NAV } from './config-layout';
 
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import { useResponsive } from '../hooks/use-responsive';
+
 const SPACING = 8;
 
 export default function Main({ children, sx, ...other }) {

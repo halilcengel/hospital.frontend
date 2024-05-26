@@ -2,15 +2,15 @@ import { HEADER, NAV } from './config-layout';
 
 import AccountPopover from './common/account-popover';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Iconify from '../components/Iconfiy';
 import Searchbar from './common/searchbar';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import { bgBlur } from '../theme/css';
-import { useTheme } from '@mui/material/styles';
 import { useResponsive } from '../hooks/use-responsive';
+import { useTheme } from '@mui/material/styles';
 
 export default function Header({ onOpenNav }) {
   const theme = useTheme();

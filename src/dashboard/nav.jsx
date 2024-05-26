@@ -1,25 +1,18 @@
-import { useEffect } from "react";
+import { Box, CardMedia } from "@mui/material";
 
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import { alpha } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import ListItemButton from "@mui/material/ListItemButton";
-
-import { usePathname } from "../routes/hooks";
-import { RouterLink } from "../routes/components";
-
-import { useResponsive } from "../hooks/use-responsive";
-
 import { NAV } from "./config-layout";
-import navConfig from "./config-navigation";
+import { RouterLink } from "../routes/components";
+import Stack from "@mui/material/Stack";
+import { alpha } from "@mui/material/styles";
+import { useEffect } from "react";
+import { usePathname } from "../routes/hooks";
+import { useResponsive } from "../hooks/use-responsive";
 
 // ----------------------------------------------------------------------
 
-export default function Nav({ openNav, onCloseNav }) {
+export default function Nav({ openNav, onCloseNav, navConfig }) {
   const pathname = usePathname();
 
   const upLg = useResponsive("up", "lg");
@@ -44,7 +37,19 @@ export default function Nav({ openNav, onCloseNav }) {
         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
       }}
     >
-      <Box sx={{ ml: 2 }}></Box>
+      <Box sx={{ ml: 2 }}>
+        <Box
+          sx={{
+            width: 150,
+            alignSelf: "center",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+          }}
+          component={"img"}
+          src="/assets/uni.logo.png"
+        />
+      </Box>
     </Box>
   );
 
@@ -56,7 +61,6 @@ export default function Nav({ openNav, onCloseNav }) {
     </Stack>
   );
 
-
   const renderContent = (
     <>
       {renderAccount}
@@ -64,7 +68,6 @@ export default function Nav({ openNav, onCloseNav }) {
       {renderMenu}
 
       <Box sx={{ flexGrow: 1 }} />
-
     </>
   );
 

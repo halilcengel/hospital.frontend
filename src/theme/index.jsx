@@ -1,14 +1,14 @@
-import { useMemo } from 'react';
-import PropTypes from 'prop-types';
+import { ThemeProvider as MUIThemeProvider, createTheme } from '@mui/material/styles';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-
+import PropTypes from 'prop-types';
+import React from 'react';
+import { customShadows } from './custom-shadows';
+import { overrides } from './overrides';
 import { palette } from './palette';
 import { shadows } from './shadows';
-import { overrides } from './overrides';
 import { typography } from './typography';
-import { customShadows } from './custom-shadows';
+import { useMemo } from 'react';
 
 // ----------------------------------------------------------------------
 

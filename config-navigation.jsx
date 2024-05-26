@@ -1,5 +1,4 @@
-import SvgColor from '../components/SvgColor';
-
+import SvgColor from './src/components/SvgColor';
 // ----------------------------------------------------------------------
 
 const icon = (name) => (
@@ -9,12 +8,12 @@ const icon = (name) => (
 const navConfig = [
   {
     title: 'Hastalıklarım',
-    path: '/dashboard/hastaliklarim',
+    path: '/dashboard/patient',
     icon: icon('ic_analytics'),
   },
   {
     title: 'Randevu Al',
-    path: '/dashboard/randevu',
+    path: '/dashboard/patient/randevu',
     icon: icon('ic_user'),
   },
 ];
