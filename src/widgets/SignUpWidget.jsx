@@ -36,7 +36,11 @@ export default function SignUpWidget({ type }) {
 
   const handleUserSubmit = async () => {
     const response = await createUser(mail, password);
-    console.log(response);
+    if (type === "admin") {
+      localStorage.setItem("userId", response.data.id);
+      const putResponse = await http.post(`user/${response.data.id}/role/2`);
+      navigate(`/dashboard/admin`);
+    }
     setStep(step + 1);
   };
 
@@ -67,6 +71,7 @@ export default function SignUpWidget({ type }) {
       });
       localStorage.setItem("doctorId", response.data.id);
     }
+
     navigate(`/dashboard/${type}`);
   };
 

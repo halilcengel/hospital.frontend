@@ -9,37 +9,63 @@ import { useState } from "react";
 function Login() {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
-  const [query, setQuery] = useState(null);
   const [type, setType] = useState(null);
   const [loginError, setLoginError] = useState(false);
-  const { data, error } = useSWR(query, http.get);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setQuery(
+
+    const response = await http.get(
       `user/Query?Filter=x=> x.emailAddress == "${mail}" && x.password == "${password}"`
     );
 
-    if (data) {
-      if (data.data.length > 0) {
+    if (response.data) {
+      if (response.data.length > 0) {
         setLoginError(false);
-        //TODO DETERMINE TYPE
-        localStorage.setItem(`${type}Id`, data.data[0].id);
-        navigate(`/dashboard/${type}`);
+        let typeId;
+        const doctorQueryResponse = await http.get(
+          `doctor/Query?Filter=x=> x.userId == ${response.data[0].id}`
+        );
+        const patientQueryResponse = await http.get(
+          `patient/Query?Filter=x=> x.userId == ${response.data[0].id}`
+        );
+
+        /* const adminQueryResponse = await http.get(
+          `user/role/Query?Filter=x=> x.userId == ${response.data[0].id} && x.roleId == 2`
+        );
+        */
+
+        if (doctorQueryResponse.data.length > 0) {
+          typeId = doctorQueryResponse.data[0].id;
+          setType("doctor");
+        }
+        if (patientQueryResponse.data.length > 0) {
+          typeId = patientQueryResponse.data[0].id;
+          setType("patient");
+        }
+        /*    if (adminQueryResponse.data.length > 0) {
+          setType("admin");
+        }
+        */
+
+        if (type !== null) {
+          localStorage.setItem("userId", response.data[0].id);
+          localStorage.setItem(`${type}Id`, typeId);
+
+          navigate(`/dashboard/${type}`);
+        }
       } else {
         console.log("Kullanıcı Bulunamadı");
         setLoginError(true);
       }
-    } else if (error) {
-      console.log(error);
+    } else {
+      console.log("Kullanıcı Bulunamadı");
       setLoginError(true);
     }
   };
 
-  return type === null ? (
-    <SelectType type={type} setType={setType} />
-  ) : (
+  return (
     <form onSubmit={handleSubmit}>
       <Stack spacing={3}>
         <TextField

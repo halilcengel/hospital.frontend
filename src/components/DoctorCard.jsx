@@ -17,16 +17,21 @@ function DoctorCard({ name, specialty }) {
   return (
     <Card>
       <CardHeader
+        titleTypographyProps={{ variant: "h6" }}
         title={name}
         subheader={specialty}
-        avatar={<Iconify icon="icon-park-solid:people" />}
+        avatar={
+          <Iconify
+            icon="ep:avatar"
+            sx={{ color: "#1877f2", width: "2rem", height: "2rem" }}
+          />
+        }
       />
-      <CardActions sx={{ alignItems: "center", justifyContent: "center" }}>
+      <CardActions sx={{ alignItems: "end", justifyContent: "end" }}>
         <Button
           size="medium"
           color={"primary"}
-          variant="contained"
-          sx={{ width: "100%" }}
+          variant="outlined"
           onClick={() => {
             navigate("/dashboard/patient/2/randevu-al");
           }}

@@ -87,7 +87,7 @@ function PatientCard({ appointment }) {
       <Card>
         <CardHeader
           titleTypographyProps={{ variant: "h5", color: "primary" }}
-          subheaderTypographyProps={{ color:"InfoText" }}
+          subheaderTypographyProps={{ color: "InfoText" }}
           title={`${patient?.firstName} ${patient?.lastName}`}
           subheader={`Randevu: ${formattedDate} ${formattedTime}`}
           avatar={<AccountCircleIcon fontSize="large" />}
@@ -117,7 +117,12 @@ function PatientCard({ appointment }) {
           <Typography margin={2}>Kan Grubu: {patient?.bloodType}</Typography>
 
           {appointment?.symptoms?.map((reason, index) => (
-            <Chip label={reason.trim()} color="info" variant="outlined" />
+            <Chip
+              key={index}
+              label={reason.trim()}
+              color="info"
+              variant="outlined"
+            />
           ))}
         </CardContent>
         <CardActions>

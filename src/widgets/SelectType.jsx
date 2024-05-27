@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Button, Dialog, DialogTitle, Stack } from "@mui/material";
+import { Button, Dialog, Stack, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 
 import Iconify from "../components/Iconfiy";
@@ -27,7 +27,13 @@ function SelectType({ type, setType }) {
             sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             onClick={() => setType("doctor")}
           >
-            <Iconify icon="hugeicons:doctor-01" />
+            <Stack direction="column" alignItems={"center"} spacing={1}>
+              <Iconify
+                icon="hugeicons:doctor-01"
+                sx={{ color: "#1877f2", width: "4rem", height: "4rem" }}
+              />
+              <Typography variant="bold" color={"#1877f2"} >Doktor</Typography>
+            </Stack>
           </Button>
 
           <Button
@@ -37,9 +43,30 @@ function SelectType({ type, setType }) {
             variant="outlined"
             sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
             onClick={() => setType("patient")}
-
           >
-            <Iconify icon="fluent:person-pill-20-regular" />
+            <Stack direction="column" alignItems={"center"} spacing={1}>
+              <Iconify
+                icon="fluent:person-pill-20-regular"
+                sx={{ color: "#1877f2", width: "4rem", height: "4rem" }}
+              />
+              <Typography variant="bold" color={"#1877f2"} >Hasta</Typography>
+            </Stack>
+          </Button>
+          <Button
+            fullWidth
+            size="large"
+            color="inherit"
+            variant="outlined"
+            sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
+            onClick={() => setType("admin")}
+          >
+            <Stack direction="column" alignItems={"center"} spacing={1}>
+              <Iconify
+                icon="eos-icons:admin"
+                sx={{ color: "#1877f2", width: "4rem", height: "4rem" }}
+              />
+              <Typography variant="bold" color={"#1877f2"} >Admin</Typography>
+            </Stack>
           </Button>
         </Stack>
       </Dialog>

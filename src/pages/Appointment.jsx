@@ -9,9 +9,9 @@ function Appointment() {
 
   return (
     <Stack direction={"column"}>
-      <Grid spacing={2} container>
+      <Grid container spacing={2}>
         {doctors?.map((doctor) => (
-          <Grid key={doctor.id} item xs={12} sm={6} md={4}>
+          <Grid item key={doctor.id} xs={12} sm={6} md={4}>
             <DoctorCard
               name={doctor.firstName + doctor.lastName}
               specialty={doctor.specialization}

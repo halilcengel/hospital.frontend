@@ -17,7 +17,7 @@ function useDiagnosis() {
       `/Appointment/query?filter=x=>x.patientId == ${patientId}`
     );
     let diagnosisIds = [];
-
+    console.log(response.data);
     response.data.map((appointment) => {
       diagnosisIds.push(appointment.outComeDiagnosisId);
     });
