@@ -13,8 +13,9 @@ function Appointment() {
         {doctors?.map((doctor) => (
           <Grid item key={doctor.id} xs={12} sm={6} md={4}>
             <DoctorCard
-              name={doctor.firstName + " " +doctor.lastName}
+              name={doctor.firstName + " " + doctor.lastName}
               specialty={doctor.specialization}
+              id={doctor.id}
             />
           </Grid>
         ))}

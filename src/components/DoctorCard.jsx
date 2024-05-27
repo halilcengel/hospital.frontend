@@ -11,7 +11,7 @@ import Iconify from "./Iconfiy";
 import SymptomSelect from "./SymptomSelect";
 import { useNavigate } from "react-router-dom";
 
-function DoctorCard({ name, specialty }) {
+function DoctorCard({ name, specialty, id }) {
   const navigate = useNavigate();
 
   return (
@@ -33,7 +33,7 @@ function DoctorCard({ name, specialty }) {
           color={"primary"}
           variant="outlined"
           onClick={() => {
-            navigate("/dashboard/patient/2/randevu-al");
+            navigate(`/dashboard/patient/${id}/randevu-al`);
           }}
         >
           Randevu Al
