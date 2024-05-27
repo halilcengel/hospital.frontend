@@ -4,12 +4,13 @@ function useDiagnosis() {
   const fetcher = (url) => http.get(url).then((res) => res.data);
 
   const getDiagnostics = () => {
-    const { data, error } = useSWR("/Diagnosis/query", fetcher);
+    const { data, error, mutate } = useSWR("/Diagnosis/query", fetcher);
 
     return {
       diagnostics: data,
       isLoading: !error && !data,
       isError: error,
+      mutate,
     };
   };
   const getDiagnosisByPatientId = async (patientId) => {

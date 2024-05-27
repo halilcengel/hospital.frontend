@@ -142,7 +142,7 @@ function PatientCard({ appointment }) {
           ) : (
             <Chip
               label={systemDiagnosisSuggestion}
-              color="s"
+              color="success"
               variant="outlined"
             />
           )}

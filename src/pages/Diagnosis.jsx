@@ -12,15 +12,22 @@ import {
   Typography,
 } from "@mui/material";
 
+import { Autocomplete } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import http from "../http";
 import useDiagnosis from "../hooks/useDiagnosis";
+import useSmymptom from "../hooks/useSymptom";
 import { useState } from "react";
 
 function Diagnosis() {
+  const { getSymptoms } = useSmymptom();
   const { getDiagnostics } = useDiagnosis();
   const [open, setOpen] = useState(false);
   const [newDiagnosis, setNewDiagnosis] = useState("");
-  const { diagnostics, isLoading, isError } = getDiagnostics();
+  const { diagnostics, isLoading, isError, mutate } = getDiagnostics();
+  const { symptoms } = getSymptoms();
+  const [selectedSymptom, setSelectedSymptom] = useState(null);
+  console.log(symptoms);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -31,10 +38,24 @@ function Diagnosis() {
 
   const handleSubmit = async () => {
     const response = await http.post("/Diagnosis", { name: newDiagnosis });
-    console.log(response);
+    if (selectedSymptom) {
+      console.log(selectedSymptom);
+      selectedSymptom.map(async (symptom) => {
+        await http.post(
+          `/Diagnosis/${response.data.id}/symptom/${symptom.id}`
+        );
+      });
+    }
     setNewDiagnosis("");
+    mutate();
     handleClose();
   };
+
+  const columns = [
+    { field: "id", headerName: "ID", width: 70 },
+    { field: "name", headerName: "Hastalık Adı", width: 130 },
+  ];
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -48,20 +69,7 @@ function Diagnosis() {
       >
         Hastalık Ekle
       </Button>
-      <Grid container spacing={2}>
-        {diagnostics.map((diagnosis, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <Card>
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  {diagnosis.name}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-
+      <DataGrid rows={diagnostics} columns={columns} pageSize={5} />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -79,6 +87,18 @@ function Diagnosis() {
             fullWidth
             value={newDiagnosis}
             onChange={(e) => setNewDiagnosis(e.target.value)}
+          />
+          <Autocomplete
+            multiple={true}
+            options={symptoms}
+            getOptionLabel={(option) => option.name}
+            style={{ width: 300 }}
+            onChange={(event, newValue) => {
+              setSelectedSymptom(newValue);
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="Symptom" variant="outlined" />
+            )}
           />
         </DialogContent>
         <DialogActions>

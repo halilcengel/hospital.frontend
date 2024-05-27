@@ -30,25 +30,24 @@ function PatientAppointment() {
       const doctor = doctors.find(
         (patient) => patient.id === appointment.doctorId
       );
-      console.log(doctor);
       appointment.doctor = doctor;
     });
   }
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={12} sm={6} md={3}>
-          {appointments ? (
-            appointments.map((appointment) => (
-              <DiagnosisCard key={appointment.id} appointment={appointment} />
-            ))
-          ) : (
-            <Typography variant="h6">
-              Kayıtlı Hastalığınız Bulunmamaktadır.
-            </Typography>
-          )}
-        </Grid>
+      <Grid container spacing={2}>
+        {appointments ? (
+          appointments.map((appointment) => (
+            <Grid item key={appointment.id} xs={12} sm={6} md={4}>
+              <DiagnosisCard appointment={appointment} />
+            </Grid>
+          ))
+        ) : (
+          <Typography variant="h6">
+            Kayıtlı Randevunuz Bulunmamaktadır.
+          </Typography>
+        )}
       </Grid>
     </>
   );

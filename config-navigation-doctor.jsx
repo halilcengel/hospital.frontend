@@ -1,3 +1,4 @@
+import Iconify from "./src/components/Iconfiy";
 import SvgColor from "./src/components/SvgColor";
 // ----------------------------------------------------------------------
 
@@ -12,12 +13,12 @@ const drNavConfig = [
   {
     title: "Randevularım",
     path: "/dashboard/doctor",
-    icon: icon("ic_analytics"),
+    icon: <Iconify icon="lets-icons:date-range-duotone" sx={{ width: 1, height: 1 }} />,
   },
   {
     title: "Hastalıklar",
     path: "/dashboard/doctor/diagnostics",
-    icon: icon("ic_disabled"),
+    icon: <Iconify icon="ph:virus-duotone" sx={{ width: 1, height: 1 }} />,
   },
 ];
 

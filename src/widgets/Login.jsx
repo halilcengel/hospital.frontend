@@ -39,15 +39,12 @@ function Login() {
         if (doctorQueryResponse.data.length > 0) {
           typeId = doctorQueryResponse.data[0].id;
           setType("doctor");
-        }
-        if (patientQueryResponse.data.length > 0) {
+        } else if (patientQueryResponse.data.length > 0) {
           typeId = patientQueryResponse.data[0].id;
           setType("patient");
-        }
-        /*    if (adminQueryResponse.data.length > 0) {
+        } else {
           setType("admin");
         }
-        */
 
         if (type !== null) {
           localStorage.setItem("userId", response.data[0].id);

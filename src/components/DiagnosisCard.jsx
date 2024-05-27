@@ -29,6 +29,9 @@ function DiagnosisCard({ appointment }) {
         }
         subheader={appointment?.doctor?.specialization}
       />
+      <Typography variant="body" color="textSecondary" sx={{ ml: 3 }}>
+        {formattedDate + " " + formattedTime}
+      </Typography>
       <CardContent>
         <Stack direction="column" spacing={1}>
           {appointment?.symptoms?.map((reason, index) => (
@@ -40,9 +43,6 @@ function DiagnosisCard({ appointment }) {
               variant="outlined"
             />
           ))}
-          <Typography variant="body" color="textSecondary">
-            {formattedDate + " " + formattedTime}
-          </Typography>
         </Stack>
       </CardContent>
     </Card>
