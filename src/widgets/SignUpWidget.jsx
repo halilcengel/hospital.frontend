@@ -26,7 +26,6 @@ export default function SignUpWidget({ type }) {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(step);
     if (step === 0) {
       handleUserSubmit();
     } else if (step === 1) {
@@ -36,8 +35,9 @@ export default function SignUpWidget({ type }) {
 
   const handleUserSubmit = async () => {
     const response = await createUser(mail, password);
+    localStorage.setItem("userId", response.data.id);
+
     if (type === "admin") {
-      localStorage.setItem("userId", response.data.id);
       const putResponse = await http.post(`user/${response.data.id}/role/2`);
       navigate(`/dashboard/admin`);
     }
