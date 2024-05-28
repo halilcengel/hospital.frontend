@@ -21,7 +21,7 @@ function useAppointment() {
 
   const getAppointmentByDoctorId = (doctorId) => {
     //eslint-disable-next-line
-    const { data, error } = useSWR(
+    const { data, error, mutate } = useSWR(
       `/appointment/query?filter=x=>x.doctorId==${doctorId}`,
       fetcher
     );
@@ -30,6 +30,7 @@ function useAppointment() {
       appointments: data,
       isLoading: !error && !data,
       isError: error,
+      mutate,
     };
   };
 
